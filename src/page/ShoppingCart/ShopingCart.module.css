@@ -1,0 +1,50 @@
+.cart{
+    margin-top:150px;
+}
+.cartTitle {
+    font-weight:bold;
+}
+.cartTotalItem{
+
+}
+.cartItem{
+    padding-top: 20px;
+}
+.table1 td {
+    padding-top:30px !important  ;
+}
+.Order{
+    padding-bottom: 1.75rem;
+   
+}
+.Order span{
+    float:inline-end;
+    font-weight: bold;
+}
+.btncheckout{
+    width: 100%;
+}
+.Payments{
+    display: flex;
+    gap:10px;
+}
+.listPayment{
+    display: flex;
+    border: 2px solid #d9d9d9;
+    border-radius: 8px;
+    padding: 20px 30px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #d9d9d9;
+    transition: all 0.15s ease;
+}
+.listPayment:hover{
+    transform: translateY(-5px); /* Dịch chuyển lên 5px khi hover */
+}
+
+.listPaymentactive{
+    color: #0a0a0a;
+    background: #f6fcf7;
+    border-color: #7dc855;
+}

@@ -1,0 +1,158 @@
+.mainContent{
+    float: left;
+    padding-left: 34px;
+    width: 100%;
+}
+
+.productIso{
+    width: 100%;
+}
+.productSorting{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.productSorting > li {
+    display: inline-block;
+    position: relative;
+    width: 185px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    border: solid 1px #ecedee;
+    padding-left: 20px;
+    padding-right: 7px;
+    margin-right: 16px;
+    margin-bottom: 10px;
+}
+.productSorting li ul {
+   display: block;
+   position: absolute;
+   right: 0;
+   top: 120%;
+   margin: 0;
+   width: 100%;background-color: #fff;
+   visibility: hidden;
+   opacity: 0;
+   z-index: 1;
+   transition: all 0.3s ease;
+   box-shadow: 0 15px 25px rgba(63, 78, 100, 0.15);
+}
+.productSorting li:hover ul{
+    opacity: 1;
+    visibility: visible;
+}
+.productSorting li ul  {
+padding: 0;
+ }
+.productSorting li ul li {
+    display: block;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+ }
+.productSorting li ul li span:hover{
+    color: #b5aec4;
+ }
+.productSorting li svg {
+  float: right;
+  color: #51545f;
+  margin-top: 14px;
+}
+.NumberSortingText{
+    margin-left:63px;
+}
+
+
+.productGrid{
+    position: relative;
+    width: 100%;
+    gap: 10px 50px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 57px;
+}
+
+
+
+  .page { margin-top:24px;}
+  .pageCurrent{
+    background: #fe4c50;
+    border: none;
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    text-align: center;
+    border: solid 1px #ecedee;
+    margin-right: 16px;
+
+  }
+  .pageCurrent span{ 
+    color: #fff;
+
+  }
+  .pageSelection {
+    display: block;
+    position: absolute;
+    right: 0;
+    padding: 0;
+    top: 120%;
+    margin: 0;
+    width: 100%;
+    background: #FFFFFF;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1;
+    box-shadow: 0 15px 25px rgba(63, 78, 100, 0.15);
+    -webkit-transition: opacity 0.3s ease;
+    -moz-transition: opacity 0.3s ease;
+    -ms-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
+}
+.pageSelection li span{
+    color: black;
+
+}
+.pageSelection li span:hover{
+    opacity: .5;
+    
+}
+.pageCurrent:hover .pageSelection {
+    visibility: visible;
+    opacity: 1;
+    top: calc(100% + 1px);
+}
+.pageTotal{
+    display: inline-block;
+    line-height: 40px;
+    margin-right: 31px;
+}
+.pageNext svg{
+    font-size: 30px;
+    cursor: pointer;
+}
+.pageNext svg:hover{
+    opacity: 0.5;
+}
+/* reponsive */
+@media only screen and (max-width: 767px){
+    .productSorting {
+        display: block;
+    }
+
+    .card{
+        width: 100px;
+    }
+}
+
+@media only screen and (min-width: 767px){
+    .productSorting {
+        display: inline-flex;
+    }
+}
+

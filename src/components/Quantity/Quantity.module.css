@@ -1,0 +1,9 @@
+.InputQuantity{
+    display: flex;
+}
+.InputQuantity input{
+    width:80px;
+    border: none; /* Loại bỏ viền border */
+    text-align: center; /* Đặt giá trị giữa ô */
+    outline: none; /* Loại bỏ border highlight khi input được chọn */
+}

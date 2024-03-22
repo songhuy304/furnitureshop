@@ -1,0 +1,301 @@
+
+
+.header {
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 9999;
+    transition:  0.32s ease-in-out;
+    background-color: transparent;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.15);
+}
+.header-scrolled {
+    padding: 0px 0;
+    background-color: #ffffff;
+}
+.navbar{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar .logo a{
+    color: black;
+    font-size: 1.5rem ;
+    font-weight: bold;
+}
+.navbar .links {
+    display: flex;
+    gap:2rem;
+    margin-bottom: 3px;
+}
+
+.navbar .links a {
+    position: relative; /* Add this line */
+    color: #000;
+    font-weight: 300;
+
+  }
+
+.navbar .links a::after {
+   content: "";
+   height: 2px;
+   width: 10px;
+   background-color: tomato;
+   position: absolute;
+   bottom: -5px;
+   left: 0;
+   transform: scaleX(0); /* Initially hide the underline */
+   transition: all 0.5s ease-in-out;
+   transform-origin: bottom left; /* Start the transformation from the bottom left */
+}
+.navbar .links a:hover::after {
+    width: 100%;
+ 
+    transform: scaleX(1); /* Show the underline on hover */
+ }
+
+ .navbar .links .active.navbar-link {
+    font-weight: bold; /* Font đậm khi active */
+}
+.navbar .links .navbar-link {
+    cursor: pointer;
+    position: relative;
+}
+.navbar .links  .subcategories {
+        position: absolute;
+        /* right: 2rem;
+        top: 60px; */
+        width: 200px;
+        background-color: rgba(255,255,255,0.1);
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+        display: block;
+
+}
+.navbar .linkscart{
+    display: flex;
+    gap : 1.5rem;
+}
+
+.navbar .linkscart a{
+    color: #000;
+}
+.navbar .linkscart button{
+    font-size: 16px;
+  color: #1c1c1c;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+  border: 0px;
+  background: #655d5d;
+  display: block;
+  border-radius: 50%;
+  -webkit-transition: all, 0.5s;
+  -moz-transition: all, 0.5s;
+  -ms-transition: all, 0.5s;
+  -o-transition: all, 0.5s;
+  transition: all, 0.5s;
+}
+.checkout_items {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 4px;
+  right: 31px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fe4c50;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+.navbar .linkscart a:hover{
+    opacity: 0,5;
+  }
+  .navbar .linkscart a:hover svg{
+    color: gray;
+    transform: rotate(360deg); 
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .navbar .linkscart .menu_user{
+    position: absolute;
+    top: 47px;
+    right: -10px;
+    padding: 10px 20px;
+    background: #fff;
+    width: 200px;
+    box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    transition: 0.5s;
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .navbar .linkscart .user_dropdown:hover .menu_user{
+    top: 60px;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .navbar .linkscart .menu_user h3 {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    padding: 20px 0;
+    font-weight: 500;
+    color: #555;
+    line-height: 1.5em;
+}
+.navbar .linkscart .menu_user ul{
+   
+    padding: 0 0;
+    
+}
+.navbar .linkscart .menu_user ul li {
+    list-style: none;
+    padding: 16px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+}
+
+.navbar .linkscart .menu_user ul li:hover {
+   opacity: 0.5;
+}
+.navbar .linkscart .menu_user ul li svg {
+    max-width: 20px;
+    margin-right: 10px;
+    opacity: 0.5;
+    transition: 0.5s;
+}
+
+
+.navbar .linkscart .menu_user ul li a {
+    display: inline-block;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: 0.5s;
+}
+.navbar .toggle_btn{
+    cursor: pointer;
+   display: none;
+}
+/*   Reponsive */
+@media (max-width:992px) {
+    .navbar .links,
+    .navbar .linkscart a{
+        display: none
+    }
+
+    .navbar{
+        margin: 0 15px;
+    }
+
+    .navbar .toggle_btn{
+        display: block
+    }
+}
+@media (max-width:576px) {
+    .menu-header{
+        left: 2rem;
+        width: unset;
+    }
+    .navbar{
+        margin: 0 15px;
+    }
+}
+/* Điều chỉnh cho màn hình nhỏ hơn 768px */
+/* @media screen and (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .logo {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  
+    .links {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .navbar-link {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  } */
+/* DROPDOWN MENU */
+.menu-header{
+    position: absolute;
+    right: 2rem;
+    top: 60px;
+    width: 300px;
+    background-color: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.menu-header-open {
+    position: absolute;
+    right: 2rem;
+    top: 60px;
+    width: 300px;
+    background-color: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: block;
+}
+.menu-header-open li a {
+   color: black;
+}
+.menu-header-open .mobie-subcategories{
+    position: absolute;
+    bottom: -50px;
+    right: 10px;
+    background-color: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: block;
+}
+.menu-header-open li{
+   padding: 0.7rem;
+   display: flex;
+   align-self: center;
+   justify-content:center;
+}
+
+.menu-header-open li:hover{
+   background-color: antiquewhite;
+ }
+.menu-header-open .linkscart {
+    display: flex;
+    align-items: center; /* Đảm bảo căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+  }
+
+
+
+

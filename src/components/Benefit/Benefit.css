@@ -1,0 +1,49 @@
+        
+.benefit {
+    margin-top: 74px;
+}
+.benefit_row {
+ 
+    padding-right: 15px;
+}
+.benefit_col {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.benefit_item {
+    height: 100px;
+    background: #e1deda;
+    border-right: solid 1px #FFFFFF;
+    padding-left: 25px;
+}
+.benefit_icon svg{
+    font-size: 30px;
+    color: #fe4c50;
+}
+.benefit_content {
+    padding-left: 22px;
+}
+.benefit-title{
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 30px;
+}
+.benefit-titleproduct{
+    font-size: 12px;
+    color: #838383;
+    font-weight: normal;
+    margin: 0;
+    text-transform: uppercase
+
+}
+
+.benefit-title  h2 span{
+    border: none;
+    font-size: 20px;
+    color: #252531;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #fff;
+    margin: 0 30px 30px;
+
+}

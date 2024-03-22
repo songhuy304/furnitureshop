@@ -1,0 +1,41 @@
+.trending-slider .trending-title{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.trending-slider .trending-title .title-product{
+    font-size: 12px;
+    color: #838383;
+    font-weight: normal;
+    margin: 0;
+    text-transform: uppercase
+}
+.trending-slider .trending-title h2 span{
+    border: none;
+    font-size: 20px;
+    color: #252531;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #fff;
+    margin: 0 30px 30px;
+}
+/* 
+.trending-slider .card {
+    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  }
+  .trending-slider .card-title{
+    font-weight:bold;
+    font-size: 15px;
+  }
+  .trending-slider .card img  {
+    cursor: pointer;
+    border-radius: 16px;
+  }
+  .trending-slider .card:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); 
+  } 
+  
+  */

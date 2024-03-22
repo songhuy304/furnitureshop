@@ -1,0 +1,148 @@
+.card {
+  transition: box-shadow 0.3s ease-in-out;
+  margin-bottom: 10px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  */
+  border: 0px   !important;
+  border-radius: 16px !important;
+width: 18rem;
+
+}
+.card-body{
+  margin:auto;
+}
+.cardTitle{
+  font-weight:bold;
+  font-size: 15px;
+}
+.card img  {
+  cursor: pointer;
+  border-radius: 16px;
+}
+.card:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); 
+} 
+.itemHover{
+  position: absolute;
+  padding: 0px;
+  left: 0;
+  bottom: 100px;
+  width: 100%;
+  text-align: center;
+  opacity: 0; /* Ẩn đi ban đầu */
+  transition: 0.5s;
+  visibility: hidden;
+  pointer-events: none; /* Không cho phép tương tác */
+ 
+}
+.card:hover .itemHover {
+  opacity: 1; /* Hiển thị khi hover vào Card */
+  visibility: visible;
+  bottom:    80px;
+
+  pointer-events: auto; /* Cho phép tương tác khi hiển thị */
+} 
+.btnCard {
+  background-color: initial; /* hoặc màu nền mặc định bạn muốn */
+  border: 0.5px solid gray;
+  border-radius: 50%; /* Tạo hình tròn */
+  width: 40px; /* Độ rộng */
+  height: 40px; /* Độ cao */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out; /* Hiệu ứng chuyển đổi màu */
+}
+.btnCard:hover {
+  background-color: #e1deda; /* Màu bạn muốn khi hover */
+}
+
+
+.itemHover li{
+  list-style: none;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.itemHover li a{
+  font-size: 16px;
+  color: #1c1c1c;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+
+  background: #ffffff;
+  display: block;
+  border-radius: 50%;
+  -webkit-transition: all, 0.5s;
+  -moz-transition: all, 0.5s;
+  -ms-transition: all, 0.5s;
+  -o-transition: all, 0.5s;
+  transition: all, 0.5s;
+}
+
+.itemHover li a:hover{
+  background-color: #30d489;
+}
+.itemHover li a:hover svg{
+  color: white;
+  transform: rotate(360deg); 
+  transition: transform 0.5s ease-in-out;
+}
+
+
+.itemHover li button{
+  font-size: 16px;
+  color: #1c1c1c;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+  border: 0px;
+  background: #ffffff;
+  display: block;
+  border-radius: 50%;
+  -webkit-transition: all, 0.5s;
+  -moz-transition: all, 0.5s;
+  -ms-transition: all, 0.5s;
+  -o-transition: all, 0.5s;
+  transition: all, 0.5s;
+}
+
+.itemHover li button:hover{
+  background-color: #30d489;
+}
+.itemHover li button:hover svg{
+  color: white;
+  transform: rotate(360deg); 
+  transition: transform 0.5s ease-in-out;
+}
+/*                                            // Phần css trong mainContent // */
+.customCardStyle {
+  
+  width: 12rem;
+  
+}
+@media (max-width:992px) {
+  
+  .card{
+      width: 100%;
+  }
+  .customCardStyle{
+    width: 18rem;
+  }
+
+ 
+}
+@media (max-width:576px) {
+  .card{
+    width: 100%;
+}
+.customCardStyle{
+  width: 18rem;
+}
+}
+
+
