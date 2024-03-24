@@ -5,6 +5,7 @@ const orderSchema = new mongoose.Schema({
   phone: String ,
   total: Number,
   status: String,
+  addrress: String,
   invoice_items: [
     {
       type: mongoose.Schema.Types.ObjectId,

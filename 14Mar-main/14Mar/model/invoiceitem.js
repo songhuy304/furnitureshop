@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const invoiceItemSchema = new mongoose.Schema({
     product_id:  String,
     quantity:  Number,
-    price:  Number
+    price:  Number,
+    itemTotal: Number
   });
 
 

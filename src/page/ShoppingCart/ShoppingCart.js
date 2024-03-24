@@ -2,6 +2,8 @@ import React ,{ useState } from 'react'
 import styles from './ShopingCart.module.css'
 import CartItem from './CartItem/CartItem'; // Import CartItem component
 import { useCart } from "react-use-cart";
+import orderApi from '../../api/order'
+
 // import { CartContext  } from '../../Context/CartContext';
 import { Container , Row, Col ,Form , Button  } from 'react-bootstrap'
 import { FaPaypal , FaCreditCard ,FaShippingFast } from "react-icons/fa";
@@ -15,9 +17,10 @@ function ShoppingCart() {
     totalItems,
     cartTotal,
     updateItemQuantity,
-    removeItem
+    removeItem,
     // emptyCart
   } = useCart();
+ 
  
   const [checkout, setcheckout] = useState(false);
 
@@ -117,7 +120,7 @@ function ShoppingCart() {
                     variant="primary"
                     onClick={handleclickCheckout}
                     >
-                      CHECKOUT
+                      {checkout ? "Back To Cart" : "CHECKOUT"}
                     </Button>
                   </div>
                 </div>
@@ -137,12 +140,66 @@ function FormCheckout(){
 
   const [validated, setValidated] = useState(false);
   const [active, setActive] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
+
+
+  const {
+    items,
+    emptyCart
+  } = useCart();
+
+  const handleCheckout = async () => {
+    try {
+      // hàm tính tổng
+      const totalAmount = items.reduce((accumulator, currentItem) => {
+        return accumulator + currentItem.itemTotal;
+      }, 0);
+ 
+
+     
+            // Lấy ngày hôm nay
+      const today = new Date();
+
+      // Định dạng ngày thành chuỗi theo định dạng "YYYY-MM-DD"
+      const formattedDate = today.toISOString().split("T")[0];
+      // Tạo dữ liệu đơn hàng từ các sản phẩm trong giỏ hàng hoặc dữ liệu cần thiết khác
+      const checkoutData = {
+        invoice_date : formattedDate,
+        customer_name:lastname,
+        phone : phone,
+        total : totalAmount,
+        status: "Loading...",
+        addrress: address,
+        invoice_items: items.map(item => ({
+          product_id: item._id, // Đây là id của sản phẩm trong giỏ hàng
+          price: item.price, // Đây là giá của sản phẩm trong giỏ hàng
+          quantity: item.quantity, // Đây là số lượng của sản phẩm trong giỏ hàng
+          itemTotal: item.itemTotal
+        }))
+      };
+      // Gọi API checkout
+      const response = await orderApi.checkout(checkoutData);
+      
+      // Xử lý kết quả từ server nếu cần
+      console.log('Checkout successful:', response.data);
+      alert('Checkout successful');
+      emptyCart();
+    } catch (error) {
+      // Xử lý lỗi nếu có
+      console.error('Error during checkout:', error.response.data.message);
+    }
+  };
 
   const handleItemClick = (itemName) => {
     setActive(itemName);
   };
 
   const handleSubmit = (event) => {
+
+   
+
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -153,13 +210,19 @@ function FormCheckout(){
   };
 
   return (
-    <Form className="mb-3" noValidate validated={validated} onSubmit={handleSubmit}>
+    <Form
+      className="mb-3"
+      noValidate
+      validated={validated}
+      onSubmit={handleSubmit}
+    >
       <Row className="mb-3">
         <Form.Group as={Col} md="4" controlId="validationCustom01">
           <Form.Label>First name</Form.Label>
           <Form.Control
             required
             type="text"
+
             placeholder="First name"
             defaultValue="Mark"
           />
@@ -170,14 +233,22 @@ function FormCheckout(){
           <Form.Control
             required
             type="text"
+            name="lastname" 
             placeholder="Last name"
-            defaultValue="Otto"
+            value={lastname}
+            onChange={(e) => setLastname(e.target.value)}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
         <Form.Group as={Col} md="4" controlId="validationCustomUsername">
           <Form.Label>Phone</Form.Label>
-          <Form.Control type="text" placeholder="PhoneNumber" required />
+          <Form.Control 
+          type="text" 
+          placeholder="PhoneNumber"
+           name="phone" 
+           value={phone}
+           onChange={(e) => setPhone(e.target.value)}
+           required  />
           <Form.Control.Feedback type="invalid">
             Please provide PhoneNumber.
           </Form.Control.Feedback>
@@ -185,26 +256,19 @@ function FormCheckout(){
       </Row>
       <Row className="mb-3">
         <Form.Group as={Col} md="4" controlId="validationCustom03">
-          <Form.Label>City</Form.Label>
-          <Form.Control type="text" placeholder="City" required />
+          <Form.Label>Address</Form.Label>
+          <Form.Control
+           name="addrress"
+            type="text" 
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            placeholder="Address"
+             required />
           <Form.Control.Feedback type="invalid">
-            Please provide a valid city.
+            Vui Lòng nhập địa chỉ.
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom04">
-          <Form.Label>Dirtrict</Form.Label>
-          <Form.Control type="text" placeholder="State" required />
-          <Form.Control.Feedback type="invalid">
-            Please provide a valid state.
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom04">
-          <Form.Label>State</Form.Label>
-          <Form.Control type="text" placeholder="State" required />
-          <Form.Control.Feedback type="invalid">
-            Please provide a valid state.
-          </Form.Control.Feedback>
-        </Form.Group>
+       
       </Row>
       <Form.Group className="mb-3">
         <Form.Label>Payment Method</Form.Label>
@@ -238,7 +302,13 @@ function FormCheckout(){
           </div>
         </div>
       </Form.Group>
-      <Button type="submit">Continute Checkout</Button>
+      <Button
+        className={styles.btncheckout}
+        variant="primary"
+        onClick={handleCheckout}
+      >
+        Continue checkout
+      </Button>
     </Form>
   );
 }

@@ -10,7 +10,7 @@ var responseReturn = require('../helper/ResponseHandle')
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
   try {
-    const orderdata = await orderModel.find();
+    const orderdata = await orderModel.find().populate('invoice_items'); // Sử dụng populate để lấy thông tin của invoice_items
     // res.json(userdata);
     responseReturn.ResponseSend(res, true, 200, orderdata)
 
@@ -39,13 +39,14 @@ router.get("/:id", async function (req, res, next) {
 // Thêm dữ liệu mới
 router.post('/checkout', async (req, res) => {
   try {
-      const { invoice_date, customer_name, phone, total, status, invoice_items } = req.body;
+      const { invoice_date, customer_name, phone, total, status, addrress,invoice_items } = req.body;
       console.log(req.body);
       // Tạo một mảng các đối tượng invoice_items từ req.body
       const invoiceItems = req.body.invoice_items.map(item => ({
           product_id: item.product_id,
           price: item.price,
-          quantity: item.quantity
+          quantity: item.quantity,
+          itemTotal: item.itemTotal
          
       }));
 
@@ -61,6 +62,7 @@ router.post('/checkout', async (req, res) => {
           phone,
           total,
           status,
+          addrress,
           invoice_items: invoiceItemsIds  // Gán mảng invoiceItems vào invoice_items
       });
 

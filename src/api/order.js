@@ -1,34 +1,34 @@
 import axiosClient from "./axiosClient";
 
-const sanphamApi = {
+const orderApi = {
     getAll(params){
-        const url = '/sanpham';
+        const url = '/order';
         return axiosClient.get(url , {params:params})
     },
 
     getById(id){
-        const url = `/sanpham/${id}`;
+        const url = `/order/${id}`;
         return axiosClient.get(url)
     },
 
     add(data){
-        const url = `/sanpham/add`;
+        const url = `/order/add`;
         return axiosClient.post(url, data)
     },
     checkout(data){
-        const url = `/sanpham/checkout`;
+        const url = `/order/checkout`;
         return axiosClient.post(url, data)
     },
 
 
     update(data) {
-        const url = `/sanpham/${data.id}`;
+        const url = `/order/${data.id}`;
         return axiosClient.patch(url, data)
     },
 
     remove(id){
-        const url = `/sanpham/${id}`;
+        const url = `/order/${id}`;
         return axiosClient.delete(url)
     }
 };
-export default sanphamApi;
+export default orderApi;

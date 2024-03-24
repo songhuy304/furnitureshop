@@ -17,6 +17,7 @@ function CardCustom ({item ,customStyle }) {
       // Ánh xạ thuộc tính _id sang id
       const itemWithId = { ...item, id: _id };
       addItem(itemWithId);
+      alert("Thêm sản phẩm thành công");
     };
 
     const handleAddToFavourite = (item) => {

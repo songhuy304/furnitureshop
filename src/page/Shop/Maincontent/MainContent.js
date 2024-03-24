@@ -5,7 +5,7 @@ import CardCustom from '../../../components/Card/CardCustom'
 import { Row, Col } from 'react-bootstrap';
 import { IoIosArrowDown   ,IoIosArrowRoundForward } from "react-icons/io";
 import { Appcontext } from '../../../Context/AppContext';
-import { motion , AnimatePresence } from 'framer-motion';
+import { motion  } from 'framer-motion';
 
 
 function MainContent() {
@@ -15,6 +15,7 @@ function MainContent() {
   
   const [sofaList, setSofaList] = useState([]);
 
+  
   useEffect(() => {
     async function fetchData() {
       try {
@@ -33,7 +34,6 @@ function MainContent() {
     fetchData();
   }, [nav , TextSorting , NumberSorting]); 
 
-  
   return (
     <div className={styles.mainContent}>
       <div className={styles.productIso}>
@@ -104,23 +104,23 @@ function MainContent() {
                   item={item}
                 />
               ))} */}
-              <AnimatePresence>
+             
               {sofaList.map((sofa, index) => (
                 <motion.div
-                key={sofa.id}
+                key={sofa._id}
                 initial={{ y: "50%", opacity: 0, scale: 0.5 }} // Trạng thái ban đầu (ẩn và co lại)
                 animate={{ y: 0, opacity: 1, scale: 1 }} // Trạng thái hiển thị (hiện và phóng to)
-                transition={{ duration:0.2, ease: "easeOut" }} // Thời gian chuyển đổi animation với delay tăng dần
+                transition={{ duration:1, ease: "easeOut" }} // Thời gian chuyển đổi animation với delay tăng dần
               >
 
                 <CardCustom
                   customStyle={"customCardStyle"}
-                  key={index}
+                  // key={index}
                   item={sofa}
                 />
                 </motion.div>
               ))}
-              </AnimatePresence>
+             
             </div>
             <div className={styles.page}>
               <div className="d-flex flex-row align-items-center">
