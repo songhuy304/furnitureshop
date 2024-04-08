@@ -6,6 +6,14 @@ const axiosClient = axios.create({
     },
 
 });
+// const axiosClientPrivate = axios.create({
+//   baseUrl: 'http://localhost:3002/',
+//   headers: {
+//       'Content-Type': 'application/json',
+//   },
+//   withCredentials:true
+
+// });
 
 // Add a request interceptor
 axiosClient.interceptors.request.use(function (config) {

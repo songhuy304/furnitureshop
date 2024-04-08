@@ -4,9 +4,11 @@ import CartItem from './CartItem/CartItem'; // Import CartItem component
 import { useCart } from "react-use-cart";
 import orderApi from '../../api/order'
 
+import {jwtDecode } from 'jwt-decode'; // Thư viện để giải mã token JWT
 // import { CartContext  } from '../../Context/CartContext';
 import { Container , Row, Col ,Form , Button  } from 'react-bootstrap'
 import { FaPaypal , FaCreditCard ,FaShippingFast } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 function ShoppingCart() {
   // const [cart, setCart] = useState(context.cart);
@@ -144,6 +146,7 @@ function FormCheckout(){
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
 
+  const navigate = useNavigate();
 
   const {
     items,
@@ -152,21 +155,33 @@ function FormCheckout(){
 
   const handleCheckout = async () => {
     try {
-      // hàm tính tổng
+      const token = localStorage.getItem('login');
+      if(!token) {
+        alert('Xin vui lòng đăng nhập');
+        navigate('/login');
+      }
+      else {
+        const decodedToken = jwtDecode(token);
+        const currentTime = Date.now() / 1000; // Thời gian hiện tại tính bằng giây
+        let id = '';
+        if (decodedToken.exp > currentTime) {
+            id = decodedToken.id;
+        }else {
+          // Xử lý trường hợp token hết hạn hoặc không hợp lệ
+          console.error('Token expired or invalid');
+        }
+          // hàm tính tổng
       const totalAmount = items.reduce((accumulator, currentItem) => {
         return accumulator + currentItem.itemTotal;
       }, 0);
- 
-
-     
             // Lấy ngày hôm nay
       const today = new Date();
-
       // Định dạng ngày thành chuỗi theo định dạng "YYYY-MM-DD"
       const formattedDate = today.toISOString().split("T")[0];
       // Tạo dữ liệu đơn hàng từ các sản phẩm trong giỏ hàng hoặc dữ liệu cần thiết khác
       const checkoutData = {
         invoice_date : formattedDate,
+        user_id: id, // Sử dụng id thay vì user_id
         customer_name:lastname,
         phone : phone,
         total : totalAmount,
@@ -174,11 +189,13 @@ function FormCheckout(){
         addrress: address,
         invoice_items: items.map(item => ({
           product_id: item._id, // Đây là id của sản phẩm trong giỏ hàng
+          name: item.title,
           price: item.price, // Đây là giá của sản phẩm trong giỏ hàng
           quantity: item.quantity, // Đây là số lượng của sản phẩm trong giỏ hàng
           itemTotal: item.itemTotal
         }))
       };
+      console.log(checkoutData);
       // Gọi API checkout
       const response = await orderApi.checkout(checkoutData);
       
@@ -186,9 +203,11 @@ function FormCheckout(){
       console.log('Checkout successful:', response.data);
       alert('Checkout successful');
       emptyCart();
+      }
+    
     } catch (error) {
       // Xử lý lỗi nếu có
-      console.error('Error during checkout:', error.response.data.message);
+      console.error('Error during checkout:', error.response.data);
     }
   };
 
@@ -196,17 +215,18 @@ function FormCheckout(){
     setActive(itemName);
   };
 
-  const handleSubmit = (event) => {
-
-   
-
+  const handleSubmit = async (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
+      event.preventDefault(); // Ngăn chặn hành động mặc định của form submit
       event.stopPropagation();
+      setValidated(true); // Đặt validated thành true để hiển thị feedback
+    } else {
+      event.preventDefault(); // Ngăn chặn hành động mặc định của form submit
+      event.stopPropagation();
+      setValidated(true); // Đặt validated thành true để hiển thị feedback
+      await handleCheckout(); // Chỉ gọi handleCheckout() nếu form hợp lệ
     }
-
-    setValidated(true);
   };
 
   return (
@@ -305,7 +325,7 @@ function FormCheckout(){
       <Button
         className={styles.btncheckout}
         variant="primary"
-        onClick={handleCheckout}
+        type='submit'
       >
         Continue checkout
       </Button>

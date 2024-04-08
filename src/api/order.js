@@ -6,6 +6,11 @@ const orderApi = {
         return axiosClient.get(url , {params:params})
     },
 
+    getOrderById(id){
+        const url = `/order/byUserId/${id}`;
+        return axiosClient.get(url)
+    },
+
     getById(id){
         const url = `/order/${id}`;
         return axiosClient.get(url)

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Sidebar() {
   return (
     <>
-      <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+      <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-primary ">
         <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
           <a
             href="/"
@@ -16,25 +16,25 @@ function Sidebar() {
             className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
             id="menu"
           >
-            <li className="nav-item">
-              <Link to="/Admin/home"  className="nav-link align-middle px-0">
+            <li className="nav-item ">
+              <Link to="/Admin/home"  className="nav-link align-middle px-0 text-white">
                 <i className="fs-4 bi-house"></i>{" "}
                 <span className="ms-1 d-none d-sm-inline">Home</span>
               </Link>
-            </li>
+             </li>
             <li>
-            <Link to="/Admin/ListSanpham"  className="nav-link align-middle px-0">
+            <Link to="/Admin/ListSanpham"  className="nav-link align-middle px-0 text-white">
                 <i className="fs-4 bi-house"></i>{" "}
                 <span className="ms-1 d-none d-sm-inline">Quản Lý Sản Phẩm</span>
               </Link>
              
             </li>
-            <Link to="/Admin/category"  className="nav-link align-middle px-0">
+            <Link to="/Admin/category"  className="nav-link align-middle px-0 text-white">
                 <i className="fs-4 bi-house"></i>{" "}
                 <span className="ms-1 d-none d-sm-inline">Quản Lý Danh Mục</span>
               </Link>
             <li>
-            <Link to="/Admin/order"  className="nav-link align-middle px-0">
+            <Link to="/Admin/order"  className="nav-link align-middle px-0 text-white">
                 <i className="fs-4 bi-house"></i>{" "}
                 <span className="ms-1 d-none d-sm-inline">Quản Lý Đơn Hàng</span>
               </Link>

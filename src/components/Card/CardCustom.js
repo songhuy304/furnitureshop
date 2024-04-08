@@ -1,6 +1,7 @@
 import React  from 'react'
 import { Card } from 'react-bootstrap';
 import style from './Card.module.css';
+import { Link } from "react-router-dom";
 import { FaHeart,FaShoppingCart  } from "react-icons/fa";
 // import { CartContext  } from '../../Context/CartContext';
 import { useCart } from "react-use-cart";
@@ -44,12 +45,11 @@ function CardCustom ({item ,customStyle }) {
           </ul>
         </div>
         <Card.Body style={{ margin: "auto" }}>
-          <Card.Title className={style.cardTitle}>{title}</Card.Title>
-          {/* <Card.Text
-            className={`d-flex justify-content-between ${style.cardText}`}
-          >
-            <span>{categoryName}</span>
-          </Card.Text> */}
+          <Card.Title className={style.cardTitle}>
+           
+            <Link to={`/product/${_id}`}>{title}</Link>
+            </Card.Title>
+        
           <Card.Text
             className={`d-flex justify-content-between ${style.cardText}`}
           >
