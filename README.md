@@ -1,7 +1,7 @@
-# About Prọect
+# About Project
 ## Website Furnitureshop 
 - Team Size 4
-- Đặng Sng Huy
+- Đặng Song Huy
 - Hồng Lập Đức
 - Lê Công Tuyển
 - Nguyễn Xuân Lộc
