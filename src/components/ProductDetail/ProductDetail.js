@@ -60,7 +60,6 @@ function ProductDetail() {
         fetchData();
 
     }, [productId]); // Đặt `productId` vào mảng dependencies
-        console.log(sofaList);
   return (
     <>
       <section className="relative mt-5 py-5">

@@ -17,26 +17,27 @@ function Login() {
  
   const handleLogin = async (e) => {
     e.preventDefault();
+    
+    try {
       const state = location.state; // Lấy thông tin state từ props
-      console.log(state );
+      console.log(state);
   
       const response = await authApi.login({ username, password });
       if (response.data.success === true) {
-          const tokenLogin = response.data.data;
-          localStorage.setItem('login', tokenLogin);
-          const previousPath = state?.from || '/'; // Nếu không có state hoặc không có thông tin trước, chuyển hướng về trang chính
-          navigate(previousPath);
+        const tokenLogin = response.data.data;
+        localStorage.setItem('login', tokenLogin);
+        const previousPath = state?.from || '/'; // Nếu không có state hoặc không có thông tin trước, chuyển hướng về trang chính
+        navigate(previousPath);
       } else {
         console.log('Đăng nhập không thành công!'); // Thực hiện hành động nếu đăng nhập không thành công
         setValidator('Đăng Nhập Không thành công')
       }
-  
-      // Chuyển hướng hoặc thực hiện các hành động khác sau khi đăng nhập thành công
-    // } catch (error) {
-    //   setValidator('Tài Khoản Hoặc Mật Khẩu không đúng');
-    // }
+    } catch (error) {
+      console.error('Đã có lỗi xảy ra khi đăng nhập:', error);
+      setValidator('Tài Khoản Hoặc Mật Khẩu không đúng');
+    }
   };
-
+  
   return (
     <div>
         <div className={style.wrapper}>
@@ -62,7 +63,7 @@ function Login() {
             <button onClick={handleLogin} className="btn btn-primary rounded-pill w-100 shadow-lg">Login</button>
         </form>
         <div className="text-center fs-6">
-            <Link to="/">Forget password?</Link> or <Link to="/register">Sign up</Link>
+            <Link to="/Forgot">Forget password?</Link> or <Link to="/register">Sign up</Link>
         </div>
     </div>
    

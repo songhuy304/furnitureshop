@@ -34,10 +34,10 @@ const CartItem = ({ item , index, updateItemQuantity, removeItem }) => {
           +
         </button>
         <button
-          className="btn btn-dark ms-2"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
           onClick={() => removeItem(item.id)}
         >
-          Remove Item
+          Remove
         </button>
       </td>
     </tr>

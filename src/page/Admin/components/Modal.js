@@ -4,43 +4,34 @@ import CategoryApi from '../../../api/categoryApi';
 import sanphamApi from '../../../api/sanphamApi';
 import ModalBootstrap from 'react-bootstrap/Modal';
 
-function Modal({ showModal, closeModal }) {
+function Modal({ showModal, closeModal , data }) {
+
   const [menuList, SetmenuList] = useState([]);
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [linkimg, setlinkimg] = useState('');
-  const [category, setCategory] = useState('');
-  const [price, setPrice] = useState(0);
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
-  };
+  const [productinfor , setProductInfor] = useState({
+    title: '',
+    description: '',
+    linkimg: '',
+    category: '',
+    price : 0,
+    
+  });
 
-  const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setProductInfor({ ...productinfor, [name]: value });
   };
-
-  const handleLinkImgChange = (event) => {
-    setlinkimg(event.target.value);
-  };
-
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
-  };
-
-  const handlePriceChange = (event) => {
-    setPrice(event.target.value);
-  };
+  
  
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const inputForm = {
-        title : title,
-        price:price,
-        category : category,
-        linkImg:linkimg,
-        description : description
+        title : productinfor.title,
+        price:productinfor.price,
+        category : productinfor.category,
+        linkImg:productinfor.linkimg,
+        description : productinfor.description
       };
       // Gọi API checkout
        await sanphamApi.add(inputForm);
@@ -74,32 +65,31 @@ function Modal({ showModal, closeModal }) {
       </ModalBootstrap.Header>
       <ModalBootstrap.Body>
       <div className="">
-      <h2 className="text-center">Quản Lý Sản Phẩm</h2>
       <form className="row g-3 mt-5" onSubmit={handleSubmit}>
         <div className="col-md-6">
           <label htmlFor="inputEmail4" className="form-label">
             Title
           </label>
-          <input type="text" className="form-control" id="inputEmail4" value={title} onChange={handleTitleChange} />
+          <input type="text" className="form-control" id="inputEmail4" name="title" value={productinfor.title} onChange={handleInputChange}  />
         </div>
         <div className="col-md-6">
           <label htmlFor="inputPassword4" className="form-label">
             Description
           </label>
-          <input type="text" className="form-control" id="inputPassword4" value={description} onChange={handleDescriptionChange} />
+          <input type="text" className="form-control" id="inputPassword4"  name="description" value={productinfor.description} onChange={handleInputChange}  />
         </div>
 
         <div className="col-md-6">
           <label htmlFor="inputCity" className="form-label">
             Link Img
           </label>
-          <input type="text" className="form-control" id="inputCity" value={linkimg} onChange={handleLinkImgChange} />
+          <input type="text" className="form-control" id="inputCity" name="linkimg" value={productinfor.linkimg} onChange={handleInputChange}  />
         </div>
         <div className="col-md-4">
           <label htmlFor="inputState" className="form-label">
             Danh mục
           </label>
-          <select id="inputState" className="form-select" value={category} onChange={handleCategoryChange}>
+          <select id="inputState" className="form-select"  name="category" value={productinfor.category} onChange={handleInputChange}  >
             
             {menuList.map((item) => (
               <option key={item._id}>{item.name}</option>
@@ -110,7 +100,7 @@ function Modal({ showModal, closeModal }) {
           <label htmlFor="inputZip" className="form-label">
             Giá
           </label>
-          <input type="number" className="form-control" id="inputZip" value={price} onChange={handlePriceChange} />
+          <input type="number" className="form-control" id="inputZip"  name="price"  value={productinfor.price} onChange={handleInputChange}  />
         </div>
         <div className="col-12">
           <button type="submit" className="btn btn-primary">Submit</button>

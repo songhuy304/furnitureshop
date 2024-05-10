@@ -30,6 +30,7 @@ function Order() {
             <th scope="col">Name</th>
             <th scope="col">Phone</th>
             <th scope="col">Total</th>
+            <th scope="col">status</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -40,6 +41,9 @@ function Order() {
               <td>{invoice.customer_name}</td>
               <td>{invoice.phone}</td>
               <td>{invoice.total}</td>
+              <td>
+                        <button className={invoice.status === 'Done...' ? 'btn btn-success' : 'btn btn-danger'}>{invoice.status}</button>
+                  </td>
 
             </tr>
           ))}

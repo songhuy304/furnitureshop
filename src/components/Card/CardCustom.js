@@ -6,8 +6,11 @@ import { FaHeart,FaShoppingCart  } from "react-icons/fa";
 // import { CartContext  } from '../../Context/CartContext';
 import { useCart } from "react-use-cart";
 
-
 function CardCustom ({item ,customStyle }) {
+
+  
+
+
     const { addItem } = useCart();
    
     const { _id, title, price, linkImg } = item; // Thêm category vào danh sách destructuring
@@ -18,7 +21,6 @@ function CardCustom ({item ,customStyle }) {
       // Ánh xạ thuộc tính _id sang id
       const itemWithId = { ...item, id: _id };
       addItem(itemWithId);
-      alert("Thêm sản phẩm thành công");
     };
 
     const handleAddToFavourite = (item) => {
@@ -57,6 +59,7 @@ function CardCustom ({item ,customStyle }) {
           </Card.Text>
         </Card.Body>
       </Card>
+      
     );
 }
 

@@ -88,7 +88,9 @@ function BlockOrder() {
                       <td>{_.phone}</td>
                       <td>{_.invoice_date}</td>
                       <td>{_.total}</td>
-                      <td className={_.status === 'Loading...' ? 'text-danger' : 'text-success'}>{_.status}</td>
+                      <td>
+                        <button className={_.status === 'Done...' ? 'btn btn-success' : 'btn btn-danger'}>{_.status}</button>
+                      </td>
                       <td>
                         <button
                           type="button"

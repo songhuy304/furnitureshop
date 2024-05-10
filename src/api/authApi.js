@@ -13,6 +13,16 @@ const authApi = {
     logout() {
         const url = '/auth/logout';
         return axiosClient.post(url);
+    },
+    forgotpassword(email){
+        const url = '/auth/forgotpassword';
+        return axiosClient.post(url ,email);
+          
+    },
+    resetpassword(userInfo){
+        const url = '/auth/resetpassword';
+        return axiosClient.post(url ,userInfo);
+          
     }
     
 

@@ -2,6 +2,7 @@
 import './App.css';
 import {BrowserRouter as Router , Routes , Route  } from 'react-router-dom';
 import Home from './page/home/Home';
+import 'react-toastify/dist/ReactToastify.css';
 import Following from './page/Following/Following';
 import Profile from './page/Profile/Profile.js';
 import Shop from './page/Shop/Shop';
@@ -21,6 +22,8 @@ import Category from './page/Admin/components/Category.js';
 import Order from './page/Admin/components/Order.js';
 import ListSanpham from './page/Admin/components/ListSanpham.js';
 // import auth
+import Forgot from './auth/Forgot.js';
+import Changepassword from './auth/Changepassword.js';
 import Login from './auth/login.js';
 import Register from './auth/register.js';
 import PrivateRoute from './auth/PrivateRoute.js'
@@ -44,6 +47,8 @@ function App() {
                 <Route path="/product/:productId" element={<Layout> <ProductDetail /> </Layout>} />
                 <Route path="/Login" element={<Login /> } />
                 <Route path="/Register" element={<Register /> } />
+                <Route path="/Forgot" element={<Forgot /> } />
+                <Route path="/Changepassword" element={<Changepassword /> } />
                 <Route path="*" element={<p>There's nothing here: 404!</p>} />
             
                   {/* Các route cho admin */}
