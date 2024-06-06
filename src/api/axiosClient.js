@@ -1,6 +1,6 @@
 import axios from "axios"
 const axiosClient = axios.create({
-    baseUrl: 'http://localhost:3002/',
+    baseUrl: 'https://expressjs-api-mu.vercel.app/',
     headers: {
         'Content-Type': 'application/json',
     },

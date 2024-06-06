@@ -8,6 +8,7 @@
     padding-right: 17px;
 }
 .sidebarSection {
+    display :block;
     padding-bottom: 35px;
     margin-bottom: 50px;
     border-bottom: solid 1px #ebebeb;
@@ -79,4 +80,8 @@
     .sidebarcategoriesColor li:nth-child(8) { background-color: orange; }
     .sidebarcategoriesColor li:nth-child(9) { background-color: brown; }
 
-    
+    @media only screen and (max-width: 600px) {
+        .mobile{
+            display: none;
+        }
+    }

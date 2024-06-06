@@ -52,22 +52,22 @@ function Sidebar() {
         </div>
         <div className={styles.sidebarcategories}>
           <ul>
-             <li
-                className={navlink === 'All' ? styles.navActive : ""}
-                onClick={() => handleSetActive('All')}
-              >
-                {navlink === "All" ? (
-                  <i>
-                    <IoMdArrowDropright />
-                  </i>
-                ) : (
-                  ""
-                )}
-                All
-                <span>
-                  <IoIosAdd />
-                </span>
-              </li>
+            <li
+              className={navlink === "All" ? styles.navActive : ""}
+              onClick={() => handleSetActive("All")}
+            >
+              {navlink === "All" ? (
+                <i>
+                  <IoMdArrowDropright />
+                </i>
+              ) : (
+                ""
+              )}
+              All
+              <span>
+                <IoIosAdd />
+              </span>
+            </li>
             {menuList.map((item, index) => (
               <li
                 key={index}
@@ -99,75 +99,62 @@ function Sidebar() {
           <input type="range" max={1000} onChange={handleInput} />
         </div>
       </div>
-      <div className={styles.sidebarSection}>
-        <div className={styles.sidebarTitle}>
-          <h5>Brand</h5>
+     <div className={styles.mobile}>
+        <div className={styles.sidebarSection}>
+          <div className={styles.sidebarTitle}>
+            <h5>Color</h5>
+          </div>
+          <div className={styles.sidebarcategoriesColor}>
+            <ul>
+              <li id={styles.white} onClick={() => handleColorClick("white")}>
+                {color === "white" && (
+                  <IoMdCheckmark className="mb-1" color="black" />
+                )}
+              </li>
+              <li id={styles.black} onClick={() => handleColorClick("black")}>
+                {color === "black" && (
+                  <IoMdCheckmark className="mb-1" color="white" />
+                )}
+              </li>
+              <li id={styles.yellow} onClick={() => handleColorClick("yellow")}>
+                {color === "yellow" && (
+                  <IoMdCheckmark className="mb-1" color="black" />
+                )}
+              </li>
+              <li id={styles.red} onClick={() => handleColorClick("red")}>
+                {color === "red" && (
+                  <IoMdCheckmark className="mb-1" color="white" />
+                )}
+              </li>
+              <li id={styles.blue} onClick={() => handleColorClick("blue")}>
+                {color === "blue" && (
+                  <IoMdCheckmark className="mb-1" color="white" />
+                )}
+              </li>
+              <li id={styles.pink} onClick={() => handleColorClick("pink")}>
+                {color === "pink" && (
+                  <IoMdCheckmark className="mb-1" color="white" />
+                )}
+              </li>
+              <li id={styles.gray} onClick={() => handleColorClick("gray")}>
+                {color === "gray" && (
+                  <IoMdCheckmark className="mb-1" color="white" />
+                )}
+              </li>
+              <li id={styles.orange} onClick={() => handleColorClick("orange")}>
+                {color === "orange" && (
+                  <IoMdCheckmark className="mb-1" color="white" />
+                )}
+              </li>
+              <li id={styles.brown} onClick={() => handleColorClick("brown")}>
+                {color === "brown" && (
+                  <IoMdCheckmark className="mb-1" color="white" />
+                )}
+              </li>
+            </ul>
+          </div>
         </div>
-        <div className={styles.sidebarcategories}></div>
-      </div>
-      <div className={styles.sidebarSection}>
-        <div className={styles.sidebarTitle}>
-          <h5>Color</h5>
-        </div>
-        <div className={styles.sidebarcategoriesColor}>
-        <ul>
-        <li
-          id={styles.white}
-          onClick={() => handleColorClick("white")}
-        >
-          {color === "white" && <IoMdCheckmark className='mb-1'  color="black" />}
-        </li>
-        <li
-          id={styles.black}
-          onClick={() => handleColorClick("black")}
-        >
-          {color === "black" && <IoMdCheckmark className='mb-1'  color="white" />}
-        </li>
-        <li
-          id={styles.yellow}
-          onClick={() => handleColorClick("yellow")}
-        >
-          {color === "yellow" && <IoMdCheckmark className='mb-1'  color="black" />}
-        </li>
-        <li
-          id={styles.red}
-          onClick={() => handleColorClick("red")}
-        >
-          {color === "red" && <IoMdCheckmark className='mb-1'  color="white" />}
-        </li>
-        <li
-          id={styles.blue}
-          onClick={() => handleColorClick("blue")}
-        >
-          {color === "blue" && <IoMdCheckmark className='mb-1'  color="white" />}
-        </li>
-        <li
-          id={styles.pink}
-          onClick={() => handleColorClick("pink")}
-        >
-          {color === "pink" && <IoMdCheckmark className='mb-1'  color="white" />}
-        </li>
-        <li
-          id={styles.gray}
-          onClick={() => handleColorClick("gray")}
-        >
-          {color === "gray" && <IoMdCheckmark className='mb-1'  color="white" />}
-        </li>
-        <li
-          id={styles.orange}
-          onClick={() => handleColorClick("orange")}
-        >
-          {color === "orange" && <IoMdCheckmark className='mb-1'  color="white" />}
-        </li>
-        <li
-          id={styles.brown}
-          onClick={() => handleColorClick("brown")}
-        >
-          {color === "brown" && <IoMdCheckmark className='mb-1'  color="white" />}
-        </li>
-      </ul>
-        </div>
-      </div>
+     </div>
     </div>
   );
 }

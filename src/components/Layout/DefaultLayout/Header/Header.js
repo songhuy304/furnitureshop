@@ -2,13 +2,9 @@ import React, { useState  , useEffect } from 'react'
 import  './Header.css'
 import { FaAngleDown } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-// import { jwtDecode } from 'jwt-decode';
-// import  UniversalCookie  from 'universal-cookie';
 import  {links}  from '../../../../router/router.js';
-// import { CartContext } from '../../../../Context/CartContext';
 import {jwtDecode } from 'jwt-decode'; // Thư viện để giải mã token JWT
 import { FaShoppingCart  , FaUser ,FaBars ,FaRegUserCircle ,FaRegEdit ,FaRegCommentAlt } from "react-icons/fa";
-// import { GoSignIn } from "react-icons/go";
 import { CiSettings } from "react-icons/ci";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { useCart } from "react-use-cart";
@@ -122,44 +118,7 @@ function Header() {
           </div>
         </div>
       </div>
-      <div className={headermenu ? "menu-header-open" : "menu-header"}>
-        {links.map((link, index) => (
-          <li key={index}>
-            {link.link ? (
-              <Link to={link.path}>{link.name}</Link>
-            ) : (
-              <div
-                className="navbar-link"
-                onClick={() => handleSubcategoryClick(link)}
-              >
-                {link.name} <FaAngleDown />
-              </div>
-            )}
-            {activeSubcategory === link.name && link.link === false && (
-              <ul className="mobie-subcategories">
-                {link.sub.map((subcategory, subIndex) => (
-                  <li key={subIndex}>{subcategory.title}</li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
-        <div className="linkscart">
-          <li>
-            <Link to="/">
-              {" "}
-              <FaShoppingCart />
-            </Link>
-          </li>
-          <li>
-            <Link to="/Following">
-              {" "}
-              <FaUser />
-              
-            </Link>
-          </li>
-        </div>
-      </div>
+      
     </header>
   );
 }
